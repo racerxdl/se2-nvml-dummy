@@ -7,22 +7,21 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
-      
+        uses: actions/checkout@v5
+
       - name: Install MinGW-w64
         run: |
           sudo apt-get update
           sudo apt-get install -y mingw-w64
-      
+
       - name: Build project
         run: make all
-      
+
       - name: Upload artifacts to release
-        uses: gitea/actions-upload-release-attachments@v1
+        uses: akkuman/gitea-release-action@v1
         with:
           files: |
             nvml.dll
-            nvml.dll.a
